@@ -15,14 +15,14 @@ namespace ReservationSystem_API.Controllers
             _logger = logger;
         }
 
-        [HttpPost("ticket/issue")]
-        public int PostTicketIssue()
+        [HttpPost("counter/issue")]
+        public int PostCounterIssue()
         {
             return ++_id;
         }
 
-        [HttpGet("ticket")]
-        public int GetTicketCount()
+        [HttpGet("counter")]
+        public int GetCounterNumber()
         {
             return _id;
         }
