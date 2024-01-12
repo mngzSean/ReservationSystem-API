@@ -4,7 +4,7 @@ using ReservationSystem_API.Data;
 namespace ReservationSystem_API.Controllers
 {
     [ApiController]
-    [Route("[controller")]
+    [Route("[controller]")]
     public class CompanyController : ControllerBase
     {
         private readonly ILogger<CompanyController> _logger;
@@ -37,7 +37,7 @@ namespace ReservationSystem_API.Controllers
             return Ok();
         }
 
-        [HttpPost(Name ="DeleteCompany")]
+        [HttpDelete(Name ="DeleteCompany")]
         public ActionResult DeleteCompany(int Idx) 
         {
             var company = _dbContext.Companies.Find(Idx);

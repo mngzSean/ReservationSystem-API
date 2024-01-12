@@ -1,4 +1,6 @@
-﻿namespace ReservationSystem_API
+﻿using ReservationSystem_API.Data;
+
+namespace ReservationSystem_API
 {
     public class Device
     {
