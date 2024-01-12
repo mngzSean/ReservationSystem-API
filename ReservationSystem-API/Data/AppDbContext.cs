@@ -23,8 +23,12 @@ namespace ReservationSystem_API.Data
         {
             // idx colume을 GENERATED ALWAYS AS IDENTITY(auto-increment) 값으로 변경
             modelBuilder.Entity<Facility>().Property(b => b.Idx).UseIdentityAlwaysColumn();     
+            modelBuilder.Entity<Company>().Property(b => b.Idx).UseIdentityAlwaysColumn();     
+            modelBuilder.Entity<Device>().Property(b => b.Idx).UseIdentityAlwaysColumn();     
         }
 
         public DbSet<Facility> Facilities { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Device> Devices { get; set; }
     }
 }

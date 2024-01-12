@@ -8,6 +8,7 @@ namespace ReservationSystem_API.Data
     {
         [Key]
         public int Idx { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Purpose{ get; set; }
         public string Location { get; set; }
