@@ -10,6 +10,6 @@
         public String Sn { get; set; } = "";
 
         public Company Company { get; set; } = new Company();
-        public Facility Facility { get; set; } = new Facility();
+        //public Facility Facility { get; set; } = new Facility();
     }
 }

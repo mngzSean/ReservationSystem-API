@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ReservationSystem_API.Data;
 using System.Security.Cryptography;
 
 namespace ReservationSystem_API.Controllers
@@ -8,42 +10,35 @@ namespace ReservationSystem_API.Controllers
     public class FacilityController : ControllerBase
     {
         private readonly ILogger<FacilityController> _logger;
-        private static readonly Facility[] SampleFacilities =
-        [
-            new Facility
-            {
-                Idx = 0,
-                Name = "병원",
-                Location = "수원시",
-                Purpose = "접수처"
-            },
-            new Facility
-            {
-                Idx = 1,
-                Name = "체육관",
-                Location = "화성시",
-                Purpose = "운동"
-            }
-        ];
+        private readonly AppDbContext _dbContext;
 
-        public FacilityController(ILogger<FacilityController> logger)
+        public FacilityController(ILogger<FacilityController> logger, AppDbContext dbContext)
         {
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         [HttpGet(Name = "GetFacilities")]
-        public IEnumerable<Facility> GetFacilities()
+        public ActionResult<IEnumerable<Facility>> GetFacilities()
         {
-            return SampleFacilities;
+            return Ok(_dbContext.Facilities.ToList());
         }
 
         [HttpGet("{Idx}", Name = "GetFacility")]
-        public Facility GetFacility(int Idx)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult<Facility> GetFacility(int Idx)
         {
-            if(Idx < SampleFacilities.Length)
-                return SampleFacilities[Idx];
+            var facility = _dbContext.Facilities.Find(Idx);
+            return facility == null ? NotFound() : Ok(facility);
+        }
 
-            return new Facility { };
+        [HttpPost(Name = "AddFacility")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult AddFacility(Facility facility)
+        {
+            _dbContext.Facilities.Add(facility);
+            _dbContext.SaveChanges();
+            return Ok();
         }
     }
 }
