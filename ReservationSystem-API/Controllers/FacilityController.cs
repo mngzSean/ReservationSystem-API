@@ -40,5 +40,17 @@ namespace ReservationSystem_API.Controllers
             _dbContext.SaveChanges();
             return Ok();
         }
+
+        [HttpDelete(Name = "DeleteFacility")]
+        public ActionResult DeleteFacility(int Idx)
+        {
+            var facility = _dbContext.Facilities.Find(Idx);
+            if (facility == null)
+                return NotFound();
+
+            _dbContext.Facilities.Remove(facility);
+            _dbContext.SaveChanges();
+            return Ok();
+        }
     }
 }
