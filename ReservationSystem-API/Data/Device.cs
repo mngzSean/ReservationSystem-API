@@ -6,7 +6,7 @@ namespace ReservationSystem_API.Data
     public class Device
     {
         [Key]
-        public int Idx { get; set; }
+        public int Idx { get; private set; }
         [Required]
         public string Pid { get; set; }
         public string Label { get; set; }

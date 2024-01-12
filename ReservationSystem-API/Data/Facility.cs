@@ -7,7 +7,7 @@ namespace ReservationSystem_API.Data
     public class Facility
     {
         [Key]
-        public int Idx { get; set; }
+        public int Idx { get; private set; }
         [Required]
         public string Name { get; set; }
         public string Purpose{ get; set; }
