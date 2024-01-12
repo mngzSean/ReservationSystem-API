@@ -22,10 +22,10 @@ namespace ReservationSystem_API.Controllers
             return Ok(_dbContext.Companies.ToList());
         }
 
-        [HttpGet("{Idx}", Name ="GetCompany")]
-        public ActionResult<Company> GetCompany(int Idx) 
+        [HttpGet("{idx}", Name ="GetCompany")]
+        public ActionResult<Company> GetCompany(int idx) 
         {
-            var company = _dbContext.Companies.Find(Idx);
+            var company = _dbContext.Companies.Find(idx);
             return company == null ? NotFound() : Ok(company);
         }
 
@@ -38,9 +38,9 @@ namespace ReservationSystem_API.Controllers
         }
 
         [HttpDelete(Name ="DeleteCompany")]
-        public ActionResult DeleteCompany(int Idx) 
+        public ActionResult DeleteCompany(int idx) 
         {
-            var company = _dbContext.Companies.Find(Idx);
+            var company = _dbContext.Companies.Find(idx);
             if (company == null)
                 return NotFound();
 

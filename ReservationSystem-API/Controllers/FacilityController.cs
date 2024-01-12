@@ -24,11 +24,11 @@ namespace ReservationSystem_API.Controllers
             return Ok(_dbContext.Facilities.ToList());
         }
 
-        [HttpGet("{Idx}", Name = "GetFacility")]
+        [HttpGet("{idx}", Name = "GetFacility")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<Facility> GetFacility(int Idx)
+        public ActionResult<Facility> GetFacility(int idx)
         {
-            var facility = _dbContext.Facilities.Find(Idx);
+            var facility = _dbContext.Facilities.Find(idx);
             return facility == null ? NotFound() : Ok(facility);
         }
 
@@ -42,9 +42,9 @@ namespace ReservationSystem_API.Controllers
         }
 
         [HttpDelete(Name = "DeleteFacility")]
-        public ActionResult DeleteFacility(int Idx)
+        public ActionResult DeleteFacility(int idx)
         {
-            var facility = _dbContext.Facilities.Find(Idx);
+            var facility = _dbContext.Facilities.Find(idx);
             if (facility == null)
                 return NotFound();
 
