@@ -15,13 +15,13 @@ namespace ReservationSystem_API.Data
         public string Sn { get; set; }
 
         [Required]
-        [ForeignKey(nameof(Companies))]
+        [ForeignKey(nameof(Company))]
         public int CompanyIdx { private get; set; }
-        public virtual Company Companies { get; set; }
+        public virtual Company Company { get; set; }
 
         [Required]
-        [ForeignKey(nameof(Facilities))]
+        [ForeignKey(nameof(Facility))]
         public int FacilityIdx { private get; set; }
-        public virtual Facility Facilities { get; set; }
+        public virtual Facility Facility { get; set; }
     }
 }

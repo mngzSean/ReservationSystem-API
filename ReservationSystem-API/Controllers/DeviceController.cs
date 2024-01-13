@@ -35,18 +35,18 @@ namespace ReservationSystem_API.Controllers
         [HttpGet(Name ="GetDevices")]
         public async Task<ActionResult<IEnumerable<Device>>> GetDevices() 
         {
-            return await _dbContext.Devices.Include(e=>e.Companies).Include(e=>e.Facilities).ToListAsync();
+            return await _dbContext.Devices.Include(e=>e.Company).Include(e=>e.Facility).ToListAsync();
         }
 
         [HttpGet("{idx}", Name="GetDevice")]
         public ActionResult<Device> GetDevice(int idx)
         {
-            var device = _dbContext.Devices.Include(e=>e.Companies).Include(e=>e.Facilities).FirstOrDefault(item => item.Idx == idx);
+            var device = _dbContext.Devices.Include(e=>e.Company).Include(e=>e.Facility).FirstOrDefault(item => item.Idx == idx);
             return device == null ? NotFound() : Ok(device);
         }
 
         [HttpPost(Name ="AddDevice")]
-        public ActionResult AddDevice(DeviceViewModel device) 
+        public ActionResult AddDevice(DeviceWritableModel device) 
         {
             _dbContext.Devices.Add(device);
             _dbContext.SaveChanges();

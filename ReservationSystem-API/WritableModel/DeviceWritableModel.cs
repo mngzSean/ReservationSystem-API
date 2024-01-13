@@ -3,11 +3,11 @@ using System.Text.Json.Serialization;
 
 namespace ReservationSystem_API.ViewModel
 {
-    public class DeviceViewModel : Device
+    public class DeviceWritableModel : Device
     {
         [JsonIgnore]
-        public override Company Companies { get; set; }
+        public override Company Company { get; set; }
         [JsonIgnore]
-        public override Facility Facilities { get; set; }
+        public override Facility Facility { get; set; }
     }
 }

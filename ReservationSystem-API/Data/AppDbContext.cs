@@ -25,10 +25,19 @@ namespace ReservationSystem_API.Data
             modelBuilder.Entity<Facility>().Property(b => b.Idx).UseIdentityAlwaysColumn();     
             modelBuilder.Entity<Company>().Property(b => b.Idx).UseIdentityAlwaysColumn();     
             modelBuilder.Entity<Device>().Property(b => b.Idx).UseIdentityAlwaysColumn();     
+            modelBuilder.Entity<Space>().Property(b => b.Idx).UseIdentityAlwaysColumn();     
+            modelBuilder.Entity<Group>().Property(b => b.Idx).UseIdentityAlwaysColumn();     
+            modelBuilder.Entity<User>().Property(b => b.Idx).UseIdentityAlwaysColumn();     
         }
 
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<Company> Companies { get; set; }
+
         public DbSet<Device> Devices { get; set; }
+
+        public DbSet<Space> Spaces { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }
