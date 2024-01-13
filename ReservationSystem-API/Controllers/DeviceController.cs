@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ReservationSystem_API.Data;
+using ReservationSystem_API.ViewModel;
 
 namespace ReservationSystem_API.Controllers
 {
@@ -31,20 +33,20 @@ namespace ReservationSystem_API.Controllers
         }
 
         [HttpGet(Name ="GetDevices")]
-        public ActionResult<IEnumerable<Device>> GetDevices() 
+        public async Task<ActionResult<IEnumerable<Device>>> GetDevices() 
         {
-            return Ok(_dbContext.Devices.ToList());
+            return await _dbContext.Devices.Include(e=>e.Companies).Include(e=>e.Facilities).ToListAsync();
         }
 
         [HttpGet("{idx}", Name="GetDevice")]
         public ActionResult<Device> GetDevice(int idx)
         {
-            var device = _dbContext.Devices.Find(idx);
+            var device = _dbContext.Devices.Include(e=>e.Companies).Include(e=>e.Facilities).FirstOrDefault(item => item.Idx == idx);
             return device == null ? NotFound() : Ok(device);
         }
 
         [HttpPost(Name ="AddDevice")]
-        public ActionResult AddDevice(Device device) 
+        public ActionResult AddDevice(DeviceViewModel device) 
         {
             _dbContext.Devices.Add(device);
             _dbContext.SaveChanges();

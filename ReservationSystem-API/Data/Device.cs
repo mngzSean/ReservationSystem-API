@@ -16,12 +16,12 @@ namespace ReservationSystem_API.Data
 
         [Required]
         [ForeignKey(nameof(Companies))]
-        public int CompanyIdx { get; set; }
+        public int CompanyIdx { private get; set; }
         public virtual Company Companies { get; set; }
 
         [Required]
         [ForeignKey(nameof(Facilities))]
-        public int FacilityIdx { get; set; }
+        public int FacilityIdx { private get; set; }
         public virtual Facility Facilities { get; set; }
     }
 }
